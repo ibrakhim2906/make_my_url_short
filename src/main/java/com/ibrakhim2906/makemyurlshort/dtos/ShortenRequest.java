@@ -1,0 +1,11 @@
+package com.ibrakhim2906.makemyurlshort.dtos;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+
+public record ShortenRequest (
+        @NotBlank @Pattern(regexp = "^(https?://).+", message = "url should start with http:// or https://")String url,
+        @NotBlank @Pattern(regexp = "^[a-zA-z0-9_-]{3,16}", message = "custom code must contain 3-16 characters: letters, digits or _ or -") String customCode,
+        Integer expiresInDays
+) {
+}

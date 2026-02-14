@@ -3,7 +3,7 @@ CREATE TABLE short_urls (
     code VARCHAR(16) NOT NULL UNIQUE,
     long_url TEXT NOT NULL,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    expires_at TIMESTAMPTZ NOT NULL,
+    expires_at TIMESTAMPTZ NULL,
     clicks BIGINT NOT NULL DEFAULT 0,
     last_accessed_at TIMESTAMPTZ NULL
 );
