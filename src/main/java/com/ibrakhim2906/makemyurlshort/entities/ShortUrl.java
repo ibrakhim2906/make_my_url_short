@@ -1,8 +1,6 @@
 package com.ibrakhim2906.makemyurlshort.entities;
 
 import jakarta.persistence.*;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import java.time.Instant;
 
