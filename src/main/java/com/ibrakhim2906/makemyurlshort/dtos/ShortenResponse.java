@@ -6,6 +6,8 @@ public record ShortenResponse(
         String code,
         String shortUrl,
         String longUrl,
-        Instant expiresAt
+        Instant expiresAt,
+        Instant createdAt,
+        Long clicks
 ) {
 }

@@ -16,16 +16,16 @@ public class ShortUrl {
     private String code;
 
     @Column(nullable = false, columnDefinition = "TEXT")
-    private String longURL;
+    private String longUrl;
 
     @Column(nullable = false)
     private Instant createdAt;
 
-    @Column(nullable = false)
-    private Instant expiresAt;
+    @Column
+    Instant expiresAt;
 
     @Column(nullable = false)
-    private Long clicks;
+    private Long clicks = 0L;
 
     @Column
     private Instant lastAccessedAt;
@@ -37,14 +37,6 @@ public class ShortUrl {
             createdAt=Instant.now();
         }
     }
-
-    @PreUpdate
-    void preUpdate() {
-        lastAccessedAt=Instant.now();
-    }
-
-    // getters and setters
-
 
     public Long getId() {
         return id;
@@ -62,12 +54,12 @@ public class ShortUrl {
         this.code = code;
     }
 
-    public String getLongURL() {
-        return longURL;
+    public String getLongUrl() {
+        return longUrl;
     }
 
-    public void setLongURL(String longURL) {
-        this.longURL = longURL;
+    public void setLongUrl(String longURL) {
+        this.longUrl = longURL;
     }
 
     public Instant getCreatedAt() {

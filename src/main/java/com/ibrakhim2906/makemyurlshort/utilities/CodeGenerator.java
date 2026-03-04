@@ -1,4 +1,4 @@
-package com.ibrakhim2906.makemyurlshort.utilies;
+package com.ibrakhim2906.makemyurlshort.utilities;
 
 import java.security.SecureRandom;
 

@@ -1,28 +1,55 @@
-## make my url short
+# MakeMy URL Short
 
-api info
+A REST API for shortening URLs, built with Spring Boot. Supports custom codes, expiry, and click tracking.
 
-POST /api/shorten
+## Tech Stack
+- Java 17, Spring Boot 3.5
+- PostgreSQL + Flyway migrations
+- Testcontainers for integration tests
+- Docker
 
-Success: 200
+## Run with Docker
+```bash
+docker compose up
+```
+API will be available at `http://localhost:8080`.
 
-Invalid URL: 400
+## Run Manually
+1. Start PostgreSQL and create a database: `CREATE DATABASE urlshortener;`
+2. Copy `.env.example` to `.env` and fill in your values
+3. Run: `./mvnw spring-boot:run`
 
-Custom Code taken: 409
+## API
 
-Body format: code, short url, long url, expiring time
+### Shorten a URL
+`POST /api/shorten`
+```json
+{ "url": "https://example.com" }
+```
+```json
+{ "code": "aB3xY7z", "shortUrl": "http://localhost:8080/aB3xY7z", "longUrl": "https://example.com", "expiresAt": null, "createdAt": "2024-01-01T00:00:00Z", "clicks": 0 }
+```
 
-GET /api/{code}
+### Shorten with custom code + expiry
+`POST /api/shorten`
+```json
+{ "url": "https://example.com", "customCode": "my-link", "expiresInDays": 7 }
+```
 
-Found: 302
+### Redirect
+`GET /{code}` → 302 redirect to original URL
 
-Not Found: 404
+### Stats
+`GET /{code}/stats`
+```json
+{ "code": "aB3xY7z", "longUrl": "https://example.com", "clicks": 42, "createdAt": "2024-01-01T00:00:00Z", "lastAccessedAt": "2024-01-05T10:00:00Z", "expiresAt": null }
+```
 
-Expired: 410
+## Tests
+```bash
+# Unit tests
+./mvnw test
 
-Error Response Body: timestamp, status, message, path
-
-
-
- 
-
+# Integration tests
+./mvnw verify -P integration
+```
