@@ -8,6 +8,10 @@ A REST API for shortening URLs, built with Spring Boot. Supports custom codes, e
 - Testcontainers for integration tests
 - Docker
 
+## Live API
+
+Swagger UI: https://makemyurlshort-production.up.railway.app/swagger-ui/index.html
+
 ## Run with Docker
 ```bash
 docker compose up
